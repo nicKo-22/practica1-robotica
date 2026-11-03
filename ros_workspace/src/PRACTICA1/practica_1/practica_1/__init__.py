@@ -1,0 +1,1 @@
+"""Práctica de registro cinemático del UR3e."""
