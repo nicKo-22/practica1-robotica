@@ -159,6 +159,26 @@ ros2 launch launcher_robots_lab_robotica sim_203.launch.py
 ```
 Esto debería ejecutar todos los nodos necesarios para poder controlar uno de los Universal Robots en simulación. Debería aparecer una interfaz gráfica en la que se muestra el robot y si se selecciona el grupo de planificación `robot`, debería permitir moverlo a diferentes posiciones, planificar y ejecutar trayectorias.
 
+### Práctica 1: suscriptor del estado de las articulaciones
+
+La tarea 1 está integrada en `ros_workspace/src/pruebas/pruebas/suscriptor_basico.py`.
+Se ha adaptado el suscriptor existente para recibir mensajes `JointState` del topic
+`/joint_states`, siguiendo el ejemplo de `control_robot.py`.
+
+Con la simulación anterior en marcha, abre otra terminal dentro del contenedor y ejecuta:
+
+```bash
+source /opt/ros/jazzy/setup.bash
+python3 /home/laboratorio/ros_workspace/src/pruebas/pruebas/suscriptor_basico.py
+```
+
+El programa muestra los nombres, posiciones, velocidades y esfuerzos con cada mensaje
+recibido. Los elementos con el mismo índice corresponden a la misma articulación.
+Las velocidades y esfuerzos pueden estar vacíos si el publicador no los proporciona.
+También pueden aparecer mensajes de las articulaciones de la pinza. Pulsa `Ctrl+C`
+para detener el nodo. Este script se ejecuta directamente con Python y no requiere
+compilar un paquete nuevo.
+
 ### Dos robots a la vez
 
 Para trabajar con dos robots en la misma escena (un único `move_group`, un único RViz) se usan los xacros combinados:

@@ -1,17 +1,25 @@
 #!/usr/bin/python3
+"""Parte 1, tarea 1: leer el estado de las articulaciones en tiempo real."""
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+from sensor_msgs.msg import JointState
 
 
 class Suscriptor(Node):
-    def __init__(self):
-        super().__init__("suscriptor_basico")
-        self.create_subscription(String, "primer_topic", self.callback, 10)
+    """Recibe el estado de las articulaciones y lo muestra en la terminal."""
 
-    def callback(self, mensaje: String):
-        print(f"He recibido: {mensaje.data}")
+    def __init__(self) -> None:
+        super().__init__("suscriptor_articulaciones")
+        # Topic y tipo de mensaje utilizados también en control_robot.py.
+        self.create_subscription(JointState, "/joint_states", self.callback, 10)
+
+    def callback(self, mensaje: JointState) -> None:
+        """Muestra los datos de cada mensaje recibido, sin calcular ni guardar."""
+        print(f"\nArticulaciones: {mensaje.name}")
+        print(f"Posiciones (rad): {list(mensaje.position)}")
+        print(f"Velocidades (rad/s): {list(mensaje.velocity)}")
+        print(f"Esfuerzos (N.m): {list(mensaje.effort)}")
 
 
 if __name__ == '__main__':
@@ -21,5 +29,6 @@ if __name__ == '__main__':
         rclpy.spin(nodo)
     except KeyboardInterrupt:
         pass
-    nodo.destroy_node()
-    rclpy.try_shutdown()
+    finally:
+        nodo.destroy_node()
+        rclpy.try_shutdown()
