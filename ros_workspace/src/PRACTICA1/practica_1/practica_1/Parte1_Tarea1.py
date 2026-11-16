@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """Parte 1, tarea 1: leer el estado de las articulaciones en tiempo real."""
 
 from typing import Optional

@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """Parte 1, tarea 2: ejecutar movimientos joint, lineal y circular."""
 
 from copy import deepcopy
@@ -11,7 +10,7 @@ from practica_1.Parte1_Tarea3 import RegistroDatos
 
 ARTICULACIONES_INICIALES = [0, -pi / 2, -pi / 2, -pi / 2, pi / 2, 0]
 GIRO_JOINT = pi / 6  # radianes
-DESPLAZAMIENTO_LINEAL = 0.05  # metros, hacia arriba
+DESPLAZAMIENTO_LINEAL = 0.05  # metros
 RADIO_CIRCULO = 0.03  # metros
 PUNTOS_CIRCULO = 64
 

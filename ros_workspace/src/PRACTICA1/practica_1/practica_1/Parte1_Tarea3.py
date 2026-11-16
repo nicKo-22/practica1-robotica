@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """Parte 1, tarea 3: calcular y guardar datos cinemáticos con su tiempo."""
 
 from __future__ import annotations
@@ -35,7 +34,6 @@ class RegistroDatos:
         self.directorio = Path(directorio) / fecha
         self.directorio.mkdir(parents=True)
         self.muestras_guardadas = 0
-        # Los callbacks y el hilo principal comparten archivo e historial.
         self._bloqueo = Condition()
         self._archivo: Optional[TextIO] = None
         self._escritor = None
@@ -90,7 +88,7 @@ class RegistroDatos:
             if self._ultimo_ns is not None:
                 intervalo = ((marca_ns - self._ultimo_ns)
                              / NANOSEGUNDOS_POR_SEGUNDO)
-                # El hardware mock puede publicar velocidad 0 en movimiento.
+                
                 velocidades = [(actual - anterior) / intervalo
                                for actual, anterior in
                                zip(posiciones, self._posiciones_anteriores)]
