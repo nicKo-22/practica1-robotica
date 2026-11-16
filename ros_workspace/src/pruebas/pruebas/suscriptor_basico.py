@@ -6,9 +6,14 @@ from std_msgs.msg import String
 
 
 class Suscriptor(Node):
-    def __init__(self):
-        super().__init__("suscriptor_basico")
-        self.create_subscription(String, "primer_topic", self.callback, 10)
+    """Suscriptor del ejemplo, reutilizable con otro mensaje y otro topic."""
+
+    def __init__(self, tipo_mensaje: type = String,
+                 topic: str = "primer_topic",
+                 nombre_nodo: str = "suscriptor_basico") -> None:
+        """Sin argumentos conserva el comportamiento del ejemplo original."""
+        super().__init__(nombre_nodo)
+        self.create_subscription(tipo_mensaje, topic, self.callback, 10)
 
     def callback(self, mensaje: String):
         print(f"He recibido: {mensaje.data}")

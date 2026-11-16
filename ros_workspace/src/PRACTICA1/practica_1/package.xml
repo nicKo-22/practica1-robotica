@@ -3,7 +3,7 @@
   <name>practica_1</name>
   <version>0.1.0</version>
   <description>Registro de datos cinemáticos del UR3e.</description>
-  <maintainer email="aitordela.osa@opendeusto.es">Estudiante</maintainer>
+  <maintainer email="estudiante@example.com">Estudiante</maintainer>
   <license>Apache-2.0</license>
   <buildtool_depend>ament_python</buildtool_depend>
   <exec_depend>rclpy</exec_depend>
@@ -13,5 +13,6 @@
   <exec_depend>moveit_msgs</exec_depend>
   <exec_depend>tf2_ros</exec_depend>
   <exec_depend>practica_1_interfaces</exec_depend>
+  <exec_depend>pruebas</exec_depend>
   <export><build_type>ament_python</build_type></export>
 </package>

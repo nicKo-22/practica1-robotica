@@ -6,10 +6,16 @@ from std_msgs.msg import String
 
 
 class Publicador(Node):
-    def __init__(self):
-        super().__init__("publicador_basico")
-        self.publicador = self.create_publisher(String, "primer_topic", 10)
-        self.create_timer(0.1, self.publicar)  # 10 Hz
+    """Publicador del ejemplo, reutilizable con otro mensaje y otro topic."""
+
+    def __init__(self, tipo_mensaje: type = String,
+                 topic: str = "primer_topic", periodo: float | None = 0.1,
+                 nombre_nodo: str = "publicador_basico") -> None:
+        """Un periodo None permite publicar solo al recibir nuevos datos."""
+        super().__init__(nombre_nodo)
+        self.publicador = self.create_publisher(tipo_mensaje, topic, 10)
+        if periodo is not None:
+            self.create_timer(periodo, self.publicar)  # 10 Hz por defecto
 
     def publicar(self):
         mensaje = String()
